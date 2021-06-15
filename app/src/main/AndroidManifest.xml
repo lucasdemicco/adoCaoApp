@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdoCaoApp">
         <activity android:name="View.MainActivity"/>
-        <activity android:name="View.BemVindoActivity" />
+        <activity android:name="View.BemVindoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name="View.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="sensor">
