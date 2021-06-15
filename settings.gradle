@@ -1,0 +1,2 @@
+rootProject.name = "adoCaoApp"
+include ':app'

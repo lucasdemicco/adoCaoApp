@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "989675325448",
+    "project_id": "adocaoapp-ade35",
+    "storage_bucket": "adocaoapp-ade35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989675325448:android:e10722239feb17576669bd",
+        "android_client_info": {
+          "package_name": "com.lucas.adocaoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989675325448-k7gmouokv9c33hstlna4d5ihd8e5a02v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lucas.adocaoapp",
+            "certificate_hash": "796bc2a0129dc7fabdeefdcc9c89dd8b61c0073b"
+          }
+        },
+        {
+          "client_id": "989675325448-gsphi21ppdvgenoapt8in373qb7979vm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqeP6UjmJQU67DYlS1dYh4qtkYPx5LwUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989675325448-gsphi21ppdvgenoapt8in373qb7979vm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
