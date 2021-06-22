@@ -44,9 +44,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!campoEmail.isEmpty()){
                     if (!campoSenha.isEmpty()){
-                        User user = new User();
-                        user.setEmail(campoEmail);
-                        user.setSenha(campoSenha);
+                            user = new User();
+                            user.setEmail(campoEmail);
+                            user.setSenha(campoSenha);
+                            validarLogin();
                     }else{
                         Toast.makeText(LoginActivity.this,
                                 "Preencha sua senha",
@@ -92,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void abrirTelaPrincipal(){
-        startActivity(new Intent(this, PrincipalActivity.class));
+        startActivity(new Intent(LoginActivity.this, PrincipalActivity.class));
         finish();
     }
 
