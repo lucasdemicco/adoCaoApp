@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lucas.adocaoapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,10 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdoCaoApp">
-        <activity android:name="View.MainActivity"/>
-        <activity android:name="View.LoginActivity"
+        <activity android:name="View.PrincipalActivity"/>
+        <activity
+            android:name="View.CadastroActivity"
             android:screenOrientation="sensor"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="View.LoginActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="View.BemVindoActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

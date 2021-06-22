@@ -4,25 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundo"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="View.LoginActivity">
-
-    <ImageView
-        android:id="@+id/imgLogoMain"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/logo" />
-
+    android:background="@drawable/cadastro"
+    tools:context="View.CadastroActivity">
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/txtNomecad"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/btncadastrar"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="Digite seu Nome"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:id="@+id/txtEmailCad"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/btncadastrar"
         android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
         android:ems="10"
@@ -34,7 +40,7 @@
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/txtSenha"
+        android:id="@+id/txtSenhaCad"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
@@ -49,25 +55,14 @@
         android:textColorHint="@color/white" />
 
     <Button
-        android:id="@+id/btnEntrar"
+        android:id="@+id/btnCad"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="30dp"
-        android:text="ENTRAR"
+        android:layout_marginTop="50dp"
+        android:text="cadastrar"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:backgroundTint="#E91E63"
         app:cornerRadius="15dp" />
 
-    <TextView
-        android:id="@+id/txtCadastrar"
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#00FFFFFF"
-        android:text="Cadastre-se"
-        android:onClick="irParaCadastroActivity"
-        android:textColor="@color/white"
-        android:textSize="20sp"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
