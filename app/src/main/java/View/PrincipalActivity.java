@@ -3,6 +3,7 @@ package View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,19 +33,17 @@ public class PrincipalActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.meus_pets:
-                startActivity(new Intent(this, MeusPetsActivity.class));
-                break;
-            case R.id.chat:
-                /*startActivity(new Intent(this, MeusPetsActivity.class));
-                break;*/
             case R.id.sair:
                 autenticacao.signOut();
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
+                break;
+            case R.id.meus_pets:
+                startActivity(new Intent(PrincipalActivity.this, MeusPetsActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

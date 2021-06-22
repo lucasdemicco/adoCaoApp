@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdoCaoApp">
-        <activity android:name="View.MeusPetsActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name="View.CadastrarPetActivity"/>
+        <activity
+            android:name="View.MeusPetsActivity"
+            android:label="@string/title_activity_meus_pets"
+            android:theme="@style/Theme.AdoCaoApp.NoActionBar" />
         <activity android:name="View.PrincipalActivity" />
         <activity
             android:name="View.CadastroActivity"

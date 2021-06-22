@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/tools"
+    android:padding="16dp"
     tools:context="View.MeusPetsActivity">
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <include layout="@layout/content_meus_pets" />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/fab_add"
+        app:fab_size="normal"
+        app:fab_colorNormal="@color/editBlack"
+        fab:fab_label="Treinos"
+        tools:ignore="UsingOnClickInXml" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
