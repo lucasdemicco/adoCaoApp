@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="editYellow">#dcb824</color>
+    <color name="editPurple">#0b0d26</color>
+    <color name="editpink">#3f2ea2</color>
+    <color name="editpink2">#E91E63</color>
+    <color name="editBlack">#1C1C1C</color>
 </resources>

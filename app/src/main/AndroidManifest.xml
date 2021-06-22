@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lucas.adocaoapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdoCaoApp">
         <activity android:name="View.MainActivity"/>
-        <activity android:name="View.BemVindoActivity"
+        <activity android:name="View.LoginActivity"
+            android:screenOrientation="sensor"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name="View.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="sensor">
+        <activity
+            android:name="View.BemVindoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="View.SplashActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
