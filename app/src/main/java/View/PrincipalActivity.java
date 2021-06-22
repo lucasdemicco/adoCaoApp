@@ -36,7 +36,10 @@ public class PrincipalActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.meus_pets:
-               /* startActivity(this, MeusPetsActivity.class);
+                startActivity(new Intent(this, MeusPetsActivity.class));
+                break;
+            case R.id.chat:
+                /*startActivity(new Intent(this, MeusPetsActivity.class));
                 break;*/
             case R.id.sair:
                 autenticacao.signOut();

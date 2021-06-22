@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdoCaoApp">
-        <activity android:name="View.PrincipalActivity"/>
+        <activity android:name="View.MeusPetsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name="View.PrincipalActivity" />
         <activity
             android:name="View.CadastroActivity"
             android:screenOrientation="sensor"
