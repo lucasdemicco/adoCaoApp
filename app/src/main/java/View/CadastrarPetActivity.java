@@ -1,32 +1,52 @@
 package View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.lucas.adocaoapp.R;
+import com.santalu.maskara.widget.MaskEditText;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Controller.Permissoes;
 
-public class CadastrarPetActivity extends AppCompatActivity {
+public class CadastrarPetActivity extends AppCompatActivity
+        implements View.OnClickListener {
 
-    private String [] permissoes = new String[]{
+    private String[] permissoes = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
     };
+
+    private List<String> listaFotos = new ArrayList<>();
+
+    private EditText txtNome, txtRaca, txtDescricao;
+    private MaskEditText txtTelefone;
+    private ImageView img1, img2, img3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_pet);
+
+        iniciarComponentes();
 
         //Validar permissões
         Permissoes.validarPermissoes(permissoes, this, 1);
@@ -43,7 +63,7 @@ public class CadastrarPetActivity extends AppCompatActivity {
         }
     }
 
-    private void alertaValidacaoPermissao(){
+    private void alertaValidacaoPermissao() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Permissões negadas");
         builder.setMessage("Para utilizar a câmera ou galeria é necessário aceitar as permissões");
@@ -60,5 +80,63 @@ public class CadastrarPetActivity extends AppCompatActivity {
     }
 
     public void cadastrarPet(View view) {
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.img1:
+                escolherImagem(1);
+                break;
+            case R.id.img2:
+                escolherImagem(2);
+                break;
+            case R.id.img3:
+                escolherImagem(3);
+                break;
+        }
+    }
+
+    public void escolherImagem(int requestCode) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            //Recuperar imagem
+            Uri imagemSelecionada = data.getData();
+            String caminhoImagem = imagemSelecionada.toString();
+
+            //Configurar imagem no ImageView
+            if (requestCode == 1) {
+                img1.setImageURI(imagemSelecionada);
+            } else if (requestCode == 2) {
+                img2.setImageURI(imagemSelecionada);
+            } else if (requestCode == 3) {
+                img3.setImageURI(imagemSelecionada);
+            }
+
+            listaFotos.add(caminhoImagem);
+        }
+
+    }
+
+    private void iniciarComponentes() {
+
+        txtNome = findViewById(R.id.txtNome);
+        txtRaca = findViewById(R.id.txtRaca);
+        txtTelefone = findViewById(R.id.txtTelefone);
+        txtDescricao = findViewById(R.id.txtDescricao);
+        img1 = findViewById(R.id.img1);
+        img1.setOnClickListener(this);
+        img2 = findViewById(R.id.img2);
+        img2.setOnClickListener(this);
+        img3 = findViewById(R.id.img3);
+        img3.setOnClickListener(this);
     }
 }
