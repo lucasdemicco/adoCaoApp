@@ -13,6 +13,8 @@ import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.lucas.adocaoapp.R;
 
+import Controller.ConfigurarFirebase;
+
 public class BemVindoActivity extends IntroActivity {
 
     private FirebaseAuth autenticacao;
@@ -22,6 +24,8 @@ public class BemVindoActivity extends IntroActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_bem_vindo);
+
+        verificarUsuarioLogado();
 
         btnGoLogin = findViewById(R.id.btnGoLogin);
 
@@ -43,6 +47,18 @@ public class BemVindoActivity extends IntroActivity {
 
     public void irParaAuthActivity(View view) {
         startActivity(new Intent(BemVindoActivity.this, LoginActivity.class));
+        finish();
+    }
+
+    public void verificarUsuarioLogado(){
+        autenticacao = ConfigurarFirebase.getReferenciaAutenticacao();
+        if(autenticacao.getCurrentUser() != null){
+            abrirTelaPrincipal();
+        }
+    }
+
+    public void abrirTelaPrincipal(){
+        startActivity(new Intent(BemVindoActivity.this, PrincipalActivity.class));
         finish();
     }
 }

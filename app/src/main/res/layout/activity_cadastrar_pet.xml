@@ -76,10 +76,22 @@
         android:inputType="textPersonName"
         android:hint="Raça" />
 
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/txtTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Telefone"
+        android:inputType="number"
+        app:mask="(__) _____-____"
+        app:maskCharacter="_"
+        app:maskStyle="completable" />
+
     <EditText
         android:id="@+id/txtDescricao"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Descrição" />

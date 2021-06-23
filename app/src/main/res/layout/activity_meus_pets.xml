@@ -10,15 +10,25 @@
 
     <include layout="@layout/content_meus_pets" />
 
-    <com.github.clans.fab.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/fab_add"
-        app:fab_size="normal"
-        app:fab_colorNormal="@color/editBlack"
-        fab:fab_label="Treinos"
-        tools:ignore="UsingOnClickInXml" />
 
+    <com.github.clans.fab.FloatingActionMenu
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end|bottom"
+    android:layout_margin="10dp"
+    fab:menu_icon="@drawable/ic_baseline_add_24"
+    app:menu_colorNormal="@color/black"
+    app:menu_colorPressed="@color/purple_700">
+
+
+    <com.github.clans.fab.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_baseline_pets_24"
+    fab:fab_size="mini"
+    app:fab_colorNormal="@color/editBlack"
+    fab:fab_label="Adicionar Pet"
+    tools:ignore="UsingOnClickInXml" />
+</com.github.clans.fab.FloatingActionMenu>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
