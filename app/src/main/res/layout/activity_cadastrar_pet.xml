@@ -20,14 +20,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/padrao" />
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/padrao"
+            android:layout_marginEnd="10dp" />
 
         <ImageView
             android:id="@+id/img2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/padrao" />
+            app:srcCompat="@drawable/padrao"
+            android:layout_marginEnd="10dp" />
 
         <ImageView
             android:id="@+id/img3"
@@ -40,76 +44,91 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerEstados"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/btncadastrar"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:background="@color/editpink2"/>
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spinnerRacas"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@drawable/btncadastrar"
-            android:layout_weight="1" />
-
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:background="@color/editpink2"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <EditText
         android:id="@+id/txtNome"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textAlignment="center"
         android:background="@drawable/btncadastrar"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Nome"
-        android:textColorHint="@color/black"/>
+        android:hint="@string/nome"
+        android:textColorHint="@color/editBlack"
+        android:gravity="center_horizontal" />
 
     <EditText
         android:id="@+id/txtRaca"
         android:layout_width="match_parent"
+        android:padding="16dp"
         android:layout_height="50dp"
         android:textAlignment="center"
         android:background="@drawable/btncadastrar"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Raça"
-        android:textColorHint="@color/black"/>
+        android:hint="@string/ra_a"
+        android:textColorHint="@color/editBlack"
+        android:gravity="center_horizontal" />
 
     <com.santalu.maskara.widget.MaskEditText
         android:id="@+id/txtTelefone"
         android:layout_width="match_parent"
+        android:padding="16dp"
         android:layout_height="50dp"
         android:textAlignment="center"
         android:background="@drawable/btncadastrar"
         android:layout_marginTop="16dp"
-        android:hint="Telefone"
+        android:hint="@string/telefone"
         android:inputType="number"
         app:mask="(__) _____-____"
         app:maskCharacter="_"
         app:maskStyle="completable"
-        android:textColorHint="@color/black"/>
+        android:textColorHint="@color/editBlack"
+        android:gravity="center_horizontal" />
 
     <EditText
         android:id="@+id/txtDescricao"
         android:layout_width="match_parent"
+        android:padding="16dp"
         android:layout_height="100dp"
         android:textAlignment="center"
         android:background="@drawable/btncadastrar"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Descrição"
-        android:textColorHint="@color/black"/>
+        android:hint="@string/descri_o"
+        android:textColorHint="@color/editBlack"
+        android:gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/btnEntrar"
@@ -117,11 +136,13 @@
         android:onClick="cadastrarPet"
         android:layout_height="55dp"
         android:layout_marginTop="30dp"
-        android:text="cadastrar pet"
+        android:text="@string/cadastrar_pet"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:backgroundTint="#E91E63"
-        app:cornerRadius="15dp" />
+        app:cornerRadius="15dp"
+        tools:ignore="UsingOnClickInXml" />
 
+    </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

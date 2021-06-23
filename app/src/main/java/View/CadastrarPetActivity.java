@@ -14,8 +14,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.lucas.adocaoapp.R;
 import com.santalu.maskara.widget.MaskEditText;
@@ -40,6 +42,7 @@ public class CadastrarPetActivity extends AppCompatActivity
     private EditText txtNome, txtRaca, txtDescricao;
     private MaskEditText txtTelefone;
     private ImageView img1, img2, img3;
+    private Spinner spinnerEstados, spinnerRacas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class CadastrarPetActivity extends AppCompatActivity
         setContentView(R.layout.activity_cadastrar_pet);
 
         iniciarComponentes();
+        carregarDadosSpinner();
 
         //Validar permissões
         Permissoes.validarPermissoes(permissoes, this, 1);
@@ -126,6 +130,25 @@ public class CadastrarPetActivity extends AppCompatActivity
 
     }
 
+    private void carregarDadosSpinner() {
+        String [] estados = getResources().getStringArray(R.array.estados);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item,
+                estados
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEstados.setAdapter(adapter);
+
+        String [] racas = getResources().getStringArray(R.array.racas);
+        ArrayAdapter<String> adapterRacas = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item,
+                racas
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRacas.setAdapter(adapterRacas);
+    }
+
+
     private void iniciarComponentes() {
 
         txtNome = findViewById(R.id.txtNome);
@@ -138,5 +161,8 @@ public class CadastrarPetActivity extends AppCompatActivity
         img2.setOnClickListener(this);
         img3 = findViewById(R.id.img3);
         img3.setOnClickListener(this);
+
+        spinnerEstados = findViewById(R.id.spinnerEstados);
+        spinnerRacas = findViewById(R.id.spinnerRacas);
     }
 }
