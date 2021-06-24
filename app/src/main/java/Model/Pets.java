@@ -44,8 +44,29 @@ public class Pets {
                 .child(getRacas())
                 .child(getIdPet())
                 .setValue(this);
-
     }
+
+    public void remover(){
+        String idUsuario = ConfigurarFirebase.getIdUsuario();
+        DatabaseReference anuncioref = ConfigurarFirebase.getReferenciaFirebase()
+                .child("meus_pets")
+                .child(idUsuario)
+                .child(getIdPet());
+
+        anuncioref.removeValue();
+        removerPetsPublicos();
+    }
+
+    public void removerPetsPublicos(){
+        DatabaseReference anuncioref = ConfigurarFirebase.getReferenciaFirebase()
+                .child("pets")
+                .child(getEstado())
+                .child(getRacas())
+                .child(getIdPet());
+
+        anuncioref.removeValue();
+    }
+
 
     public String getIdPet() {
         return idPet;
