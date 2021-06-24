@@ -32,6 +32,19 @@ public class Pets {
                 .child(getIdPet())
                 .setValue(this);
 
+        salvarPetsPublicos();
+
+    }
+
+    public void salvarPetsPublicos(){
+        DatabaseReference anuncioref = ConfigurarFirebase.getReferenciaFirebase()
+                .child("pets");
+
+        anuncioref.child(getEstado())
+                .child(getRacas())
+                .child(getIdPet())
+                .setValue(this);
+
     }
 
     public String getIdPet() {
