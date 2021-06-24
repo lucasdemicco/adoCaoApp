@@ -20,6 +20,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.lucas.adocaoapp.R;
 import com.santalu.maskara.widget.MaskEditText;
 
@@ -28,7 +35,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controller.ConfigurarFirebase;
 import Controller.Permissoes;
+import Model.Pets;
 
 public class CadastrarPetActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -39,11 +48,15 @@ public class CadastrarPetActivity extends AppCompatActivity
     };
 
     private List<String> listaFotos = new ArrayList<>();
+    private List<String> listaUrlFotos = new ArrayList<>();
 
     private EditText txtNome, txtRaca, txtDescricao;
     private MaskEditText txtTelefone;
     private ImageView img1, img2, img3;
     private Spinner spinnerEstados, spinnerRacas;
+
+    private Pets pets;
+    private StorageReference storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +65,9 @@ public class CadastrarPetActivity extends AppCompatActivity
 
         iniciarComponentes();
         carregarDadosSpinner();
+
+        //Configs iniciais
+        storage = ConfigurarFirebase.getReferenciaStorage();
 
         //Validar permissões
         Permissoes.validarPermissoes(permissoes, this, 1);
@@ -146,23 +162,72 @@ public class CadastrarPetActivity extends AppCompatActivity
         spinnerRacas.setAdapter(adapterRacas);
     }
 
+    private void salvarPet() {
+
+        //Salvar imagem Storage
+        for(int i=0; i <listaFotos.size(); i++){
+            String urlImagem = listaFotos.get(i);
+            int tamanhoLista = listaFotos.size();
+            salvarFotoStorage(urlImagem, tamanhoLista, i );
+        }
+        Toast.makeText(CadastrarPetActivity.this,
+                "Salvo com sucesso!",
+                Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this, PrincipalActivity.class));
+    }
+
+    private void salvarFotoStorage(String urlFoto, int totalFotos, int contador){
+
+        //Criar nó Storage
+        final StorageReference imagemAnuncio = storage.child("imagens")
+                .child("pets")
+                .child(pets.getIdPet())
+                .child("Imagem" + contador);
+
+        //Fazer upload do arquivo
+        UploadTask uploadTask = imagemAnuncio.putFile(Uri.parse(urlFoto));
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                imagemAnuncio.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Uri> task) {
+                        Uri url = task.getResult();
+                        String urlConvertida = url.toString();
+
+                        listaUrlFotos.add(urlConvertida);
+
+                        if(totalFotos == listaUrlFotos.size()){
+                            pets.setFotos(listaUrlFotos);
+                            pets.salvar();
+                        }
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                exibirMensagemErro("Falha ao fazer upload!");
+            }
+        });
+
+    }
+
 
     public void validarDadosCadastro(View view){
 
-        String estado = spinnerEstados.getSelectedItem().toString();
-        String racas = spinnerRacas.getSelectedItem().toString();
-        String nome = txtNome.getText().toString();
-        String raca = txtRaca.getText().toString();
-        String telefone = txtTelefone.getText().toString();
-        String descricao = txtDescricao.getText().toString();
+        pets = configurarAnuncio();
 
         if(listaFotos.size() != 0){
-            if(!estado.isEmpty()){
-                if(!racas.isEmpty()){
-                    if(!nome.isEmpty()){
-                        if(!raca.isEmpty()){
-                            if(!telefone.isEmpty()){
-                                if(!descricao.isEmpty()){
+            if(!pets.getEstado().isEmpty()){
+                if(!pets.getRacas().isEmpty()){
+                    if(!pets.getNome().isEmpty()){
+                        if(!pets.getRaca().isEmpty()){
+                            if(!pets.getTelefone().isEmpty() && pets.getTelefone().length() >=10){
+                                if(!pets.getDescricao().isEmpty()){
                                     salvarPet();
                                 }else{
                                     exibirMensagemErro("Digite uma descrição do pet!");
@@ -191,7 +256,24 @@ public class CadastrarPetActivity extends AppCompatActivity
 
     }
 
-    private void salvarPet() {
+    private Pets configurarAnuncio(){
+        String estado = spinnerEstados.getSelectedItem().toString();
+        String racas = spinnerRacas.getSelectedItem().toString();
+        String nome = txtNome.getText().toString();
+        String raca = txtRaca.getText().toString();
+        String telefone = txtTelefone.getText().toString();
+        String descricao = txtDescricao.getText().toString();
+
+        Pets pets = new Pets();
+        pets.setEstado(estado);
+        pets.setRacas(racas);
+        pets.setNome(nome);
+        pets.setRaca(raca);
+        pets.setTelefone(telefone);
+        pets.setDescricao(descricao);
+
+        return pets;
+
     }
 
     public void exibirMensagemErro(String mensagem){

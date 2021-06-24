@@ -84,6 +84,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/nome"
+        android:textColor="@color/black"
         android:textColorHint="@color/editBlack"
         android:gravity="center_horizontal" />
 
@@ -98,6 +99,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/ra_a"
+        android:textColor="@color/black"
         android:textColorHint="@color/editBlack"
         android:gravity="center_horizontal" />
 
@@ -110,6 +112,7 @@
         android:background="@drawable/btncadastrar"
         android:layout_marginTop="16dp"
         android:hint="@string/telefone"
+        android:textColor="@color/black"
         android:inputType="number"
         app:mask="(__) _____-____"
         app:maskCharacter="_"
@@ -128,13 +131,14 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/descri_o"
+        android:textColor="@color/black"
         android:textColorHint="@color/editBlack"
         android:gravity="center_horizontal"/>
 
     <Button
-        android:id="@+id/btnEntrar"
+        android:id="@+id/btnCad"
         android:layout_width="match_parent"
-        android:onClick="cadastrarPet"
+        android:onClick="validarDadosCadastro"
         android:layout_height="55dp"
         android:layout_marginTop="30dp"
         android:text="@string/cadastrar_pet"
