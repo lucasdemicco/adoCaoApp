@@ -38,6 +38,7 @@ import java.util.List;
 import Controller.ConfigurarFirebase;
 import Controller.Permissoes;
 import Model.Pets;
+import dmax.dialog.SpotsDialog;
 
 public class CadastrarPetActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -57,6 +58,8 @@ public class CadastrarPetActivity extends AppCompatActivity
 
     private Pets pets;
     private StorageReference storage;
+
+    private android.app.AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,17 +167,23 @@ public class CadastrarPetActivity extends AppCompatActivity
 
     private void salvarPet() {
 
+        dialog = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Salvando pet")
+                .setCancelable(false)
+                .build();
+        dialog.show();
+
+
         //Salvar imagem Storage
         for(int i=0; i <listaFotos.size(); i++){
             String urlImagem = listaFotos.get(i);
             int tamanhoLista = listaFotos.size();
             salvarFotoStorage(urlImagem, tamanhoLista, i );
         }
-        Toast.makeText(CadastrarPetActivity.this,
+        Toast.makeText(this,
                 "Salvo com sucesso!",
                 Toast.LENGTH_SHORT).show();
-
-        startActivity(new Intent(this, PrincipalActivity.class));
     }
 
     private void salvarFotoStorage(String urlFoto, int totalFotos, int contador){
@@ -202,6 +211,8 @@ public class CadastrarPetActivity extends AppCompatActivity
                         if(totalFotos == listaUrlFotos.size()){
                             pets.setFotos(listaUrlFotos);
                             pets.salvar();
+                            dialog.dismiss();
+                            finish();
                         }
                     }
                 });
