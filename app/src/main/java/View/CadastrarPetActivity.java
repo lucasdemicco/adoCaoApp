@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.lucas.adocaoapp.R;
 import com.santalu.maskara.widget.MaskEditText;
@@ -83,9 +84,6 @@ public class CadastrarPetActivity extends AppCompatActivity
         dialog.show();
     }
 
-    public void cadastrarPet(View view) {
-    }
-
     @Override
     public void onClick(View v) {
 
@@ -148,6 +146,59 @@ public class CadastrarPetActivity extends AppCompatActivity
         spinnerRacas.setAdapter(adapterRacas);
     }
 
+
+    public void validarDadosCadastro(View view){
+
+        String estado = spinnerEstados.getSelectedItem().toString();
+        String racas = spinnerRacas.getSelectedItem().toString();
+        String nome = txtNome.getText().toString();
+        String raca = txtRaca.getText().toString();
+        String telefone = txtTelefone.getText().toString();
+        String descricao = txtDescricao.getText().toString();
+
+        if(listaFotos.size() != 0){
+            if(!estado.isEmpty()){
+                if(!racas.isEmpty()){
+                    if(!nome.isEmpty()){
+                        if(!raca.isEmpty()){
+                            if(!telefone.isEmpty()){
+                                if(!descricao.isEmpty()){
+                                    salvarPet();
+                                }else{
+                                    exibirMensagemErro("Digite uma descrição do pet!");
+
+                                }
+                            }else{
+                                exibirMensagemErro("Digite um telefone");
+
+                            }
+                        }else{
+                            exibirMensagemErro("Digite a raça do pet!");
+
+                        }
+                    }else{
+                        exibirMensagemErro("Digite o nome do pet!");
+                    }
+                }else{
+                    exibirMensagemErro("Selecione o tipo de pet!");
+                }
+            }else{
+                exibirMensagemErro("Selecione o estado!");
+            }
+        }else{
+            exibirMensagemErro("Selecione ao menos uma foto!");
+        }
+
+    }
+
+    private void salvarPet() {
+    }
+
+    public void exibirMensagemErro(String mensagem){
+        Toast.makeText(this,
+                mensagem,
+                Toast.LENGTH_SHORT).show();
+    }
 
     private void iniciarComponentes() {
 
