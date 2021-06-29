@@ -4,12 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:layout_marginTop="8dp"
     android:elevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
+        android:background="@color/white"
         android:padding="8dp"
         android:orientation="horizontal">
 
@@ -41,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/editBlack"
                 android:text="TextView" />
 
         </LinearLayout>

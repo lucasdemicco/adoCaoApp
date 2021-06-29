@@ -53,6 +53,7 @@ public class MeusPetsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_meus_pets);
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Meus Pets");
 
         //Configs iniciais
         anuncioUsuarioRef = ConfigurarFirebase.getReferenciaFirebase()

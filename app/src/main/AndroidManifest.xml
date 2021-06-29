@@ -20,22 +20,30 @@
         <activity
             android:name="View.CadastrarPetActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name="View.MeusPetsActivity"
             android:label="@string/title_activity_meus_pets"
-            android:theme="@style/Theme.AdoCaoApp.NoActionBar" />
-        <activity android:name="View.PrincipalActivity" />
+            android:theme="@style/Theme.AppCompat"
+            android:parentActivityName="View.PrincipalActivity"/>
+
+        <activity android:name="View.PrincipalActivity"
+            android:theme="@style/Theme.AppCompat"/>
+
         <activity
             android:name="View.CadastroActivity"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name="View.LoginActivity"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name="View.BemVindoActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <activity
             android:name="View.SplashActivity"
             android:screenOrientation="sensor"
