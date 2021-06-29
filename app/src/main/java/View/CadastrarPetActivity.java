@@ -65,6 +65,7 @@ public class CadastrarPetActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_pet);
+        getSupportActionBar().setTitle("Cadastrar novo Pet");
 
         iniciarComponentes();
         carregarDadosSpinner();
