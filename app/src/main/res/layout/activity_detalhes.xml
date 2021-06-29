@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:layout_margin="8dp"
+    android:background="@color/white"
     tools:context="View.DetalhesActivity">
 
     <com.synnapps.carouselview.CarouselView
@@ -22,22 +21,25 @@
 
     <TextView
         android:id="@+id/txtNomeDetalhes"
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/editBlack"
+        android:textSize="25sp"
+        android:textColor="@color/editpink2"
         android:text="Nome" />
 
 
     <TextView
         android:id="@+id/txtRacaDetalhes"
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:layout_marginBottom="8dp"
+        android:textColor="@color/editBlack"
         android:text="Raça" />
 
     <View
@@ -53,8 +55,9 @@
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:layout_marginBottom="8dp"
-        android:drawableLeft="@drawable/ic_baseline_location_on_24"
-        android:text="SP" />
+        android:textColor="@color/editBlack"
+        android:text="SP"
+        app:drawableLeftCompat="@drawable/ic_baseline_location_on_24" />
 
     <View
         android:background="@android:color/darker_gray"
@@ -63,17 +66,20 @@
 
     <TextView
         android:id="@+id/txtDescicaoDetalhes"
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="16sp"
+        android:textColor="@color/editBlack"
         android:layout_marginBottom="8dp"
         android:text="Descrição: " />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:padding="8dp"
+        android:layout_marginTop="200dp"
         android:orientation="horizontal">
 
 
@@ -85,6 +91,7 @@
             android:layout_weight="1"
             android:textColor="@color/white"
             android:background="@color/editpink2"
+            android:onClick="visualizarTelefone"
             android:text="ver telefone"
             app:backgroundTint="@color/editpink2" />
 

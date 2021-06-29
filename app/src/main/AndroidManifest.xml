@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdoCaoApp">
-        <activity android:name="View.DetalhesActivity"></activity>
+        <activity android:name="View.DetalhesActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:parentActivityName="View.PrincipalActivity"/>
         <activity
             android:name="View.CadastrarPetActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

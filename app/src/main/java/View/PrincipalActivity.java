@@ -77,9 +77,9 @@ public class PrincipalActivity extends AppCompatActivity {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Pets petsSelecionado = petsList.get(position);
+                        Pets petsSelecionados = petsList.get(position);
                         Intent i = new Intent(PrincipalActivity.this, DetalhesActivity.class);
-                        i.putExtra("petsSelecionado", petsSelecionado);
+                        i.putExtra("petsSelecionados", petsSelecionados);
                         startActivity(i);
                     }
 
