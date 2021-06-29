@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +46,9 @@ public class PrincipalActivity extends AppCompatActivity {
     private DatabaseReference anunciosPublicosRef;
     private AlertDialog dialog;
     private String filtroEstado = "";
+    private boolean filtrandoPorEstado = false;
+    private String filtroCategoria = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +131,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 filtroEstado = spinnerEstadoFiltro.getSelectedItem().toString();
                 recuperarAnunciosPorEstado();
+                filtrandoPorEstado = true;
 
             }
         });
@@ -140,6 +145,90 @@ public class PrincipalActivity extends AppCompatActivity {
 
         AlertDialog dialog = dialogEstado.create();
         dialog.show();
+    }
+
+    public void filtrarCategoria(View view) {
+
+        if(filtrandoPorEstado == true){
+            AlertDialog.Builder dialogCategorias = new AlertDialog.Builder(this);
+            dialogCategorias.setTitle("Selecione a categoria desejada: ");
+
+            //Configurar Spinner
+            View viewSpinner = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+
+            Spinner spinnerCategoriaFiltro = viewSpinner.findViewById(R.id.spinnerFiltro);
+            String [] estados = getResources().getStringArray(R.array.racas);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this, android.R.layout.simple_spinner_item,
+                    estados
+            );
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerCategoriaFiltro.setAdapter(adapter);
+
+            dialogCategorias.setView(viewSpinner);
+
+
+            dialogCategorias.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    filtroCategoria = spinnerCategoriaFiltro.getSelectedItem().toString();
+                    recuperarAnunciosPorCategoria();
+                }
+            });
+
+            dialogCategorias.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+
+            AlertDialog dialog = dialogCategorias.create();
+            dialog.show();
+        }else{
+            Toast.makeText(this,
+                    "Escolha primeiro uma região",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void recuperarAnunciosPorCategoria(){
+
+        dialog = new SpotsDialog.Builder()
+                .setContext( this )
+                .setMessage("Recuperando anúncios")
+                .setCancelable( false )
+                .build();
+        dialog.show();
+
+        anunciosPublicosRef = ConfigurarFirebase.getReferenciaFirebase()
+                .child("pets")
+                .child(filtroEstado)
+                .child(filtroCategoria);
+
+        anunciosPublicosRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                petsList.clear();
+                for (DataSnapshot racas : snapshot.getChildren()) {
+
+                    Pets pet = racas.getValue(Pets.class);
+                    petsList.add(pet);
+                }
+
+                Collections.reverse(petsList);
+                adapterPets.notifyDataSetChanged();
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     public void recuperarAnunciosPorEstado(){
@@ -209,4 +298,5 @@ public class PrincipalActivity extends AppCompatActivity {
         btnCategoria = findViewById(R.id.btnCategoria);
         btnRegiao = findViewById(R.id.btnRegiao);
     }
+
 }
