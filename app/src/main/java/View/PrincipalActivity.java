@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -33,6 +34,7 @@ import java.util.List;
 
 import Controller.AdapterPets;
 import Controller.ConfigurarFirebase;
+import Controller.RecyclerItemClickListener;
 import Model.Pets;
 import dmax.dialog.SpotsDialog;
 
@@ -67,6 +69,31 @@ public class PrincipalActivity extends AppCompatActivity {
         recyclerAnunciosPublicos.setAdapter(adapterPets);
 
         recuperarAnunciosPublicos();
+
+        //Adicionar eventos de clique
+        recyclerAnunciosPublicos.addOnItemTouchListener(new RecyclerItemClickListener(
+                this,
+                recyclerAnunciosPublicos,
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Pets petsSelecionado = petsList.get(position);
+                        Intent i = new Intent(PrincipalActivity.this, DetalhesActivity.class);
+                        i.putExtra("petsSelecionado", petsSelecionado);
+                        startActivity(i);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                }
+        ));
 
     }
 

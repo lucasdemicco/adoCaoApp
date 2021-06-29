@@ -2,11 +2,12 @@ package Model;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.io.Serializable;
 import java.util.List;
 
 import Controller.ConfigurarFirebase;
 
-public class Pets {
+public class Pets implements Serializable {
 
     private String idPet;
     private String estado;
