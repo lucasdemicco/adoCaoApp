@@ -22,7 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/editpink2"
-            android:text="região" />
+            android:onClick="filtrarEstado"
+            android:text="região"
+            tools:ignore="UsingOnClickInXml" />
 
         <TextView
             android:id="@+id/textView"
