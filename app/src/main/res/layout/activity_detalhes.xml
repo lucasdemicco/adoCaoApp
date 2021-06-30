@@ -79,18 +79,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:orientation="horizontal">
 
 
         <Button
             android:id="@+id/btnTelefone"
+            android:padding="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:textColor="@color/white"
             android:background="@color/editpink2"
+            android:drawableLeft="@drawable/ic_baseline_local_phone_24"
             android:onClick="visualizarTelefone"
             android:text="ver telefone"
             app:backgroundTint="@color/editpink2" />
@@ -99,11 +101,14 @@
             android:id="@+id/btnLocalizacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:background="@color/editpink2"
-            android:text="ver localização"
-            app:backgroundTint="@color/editpink2" />
+            android:background="@color/editBlack"
+            android:drawableLeft="@drawable/ic_baseline_chat_bubble_24"
+            android:onClick="chamarNoChat"
+            android:text="Chat"
+            app:backgroundTint="@color/editBlack" />
     </LinearLayout>
 
 

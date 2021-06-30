@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,11 +50,18 @@ public class DetalhesActivity extends AppCompatActivity {
 
             carouselView.setPageCount(petsSelecionado.getFotos().size());
             carouselView.setImageListener(imageListener);
+
         }
     }
 
     public void visualizarTelefone(View view){
         Intent i = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", petsSelecionado.getTelefone(), null ));
+        startActivity( i );
+    }
+
+
+    public void chamarNoChat(View view) {
+        Intent i = new Intent (DetalhesActivity.this, ChatActivity.class );
         startActivity( i );
     }
 

@@ -6,7 +6,7 @@
            android:title="Meus Pets"/>
 
        <item android:id="@+id/chat"
-           android:title="Chat"/>
+           android:title="Configurações"/>
 
        <item android:id="@+id/sair"
            android:title="Sair"/>

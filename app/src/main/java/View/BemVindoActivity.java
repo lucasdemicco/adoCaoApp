@@ -39,7 +39,7 @@ public class BemVindoActivity extends IntroActivity {
                 .build());
 
         addSlide(new FragmentSlide.Builder()
-                .background(android.R.color.white)
+                .background(android.R.color.black)
                 .fragment(R.layout.intro2)
                 .canGoForward(false)
                 .build());

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lucas.adocaoapp">
-
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,37 +20,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-        <activity android:name="View.DetalhesActivity"
+
+        <activity android:name="View.ChatActivity"
             android:theme="@style/Theme.AppCompat"
             android:parentActivityName="View.PrincipalActivity"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name="View.DetalhesActivity"
+            android:parentActivityName="View.PrincipalActivity"
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name="View.CadastrarPetActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:parentActivityName="View.MeusPetsActivity"/>
-
+            android:parentActivityName="View.MeusPetsActivity"
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name="View.MeusPetsActivity"
             android:label="@string/title_activity_meus_pets"
-            android:theme="@style/Theme.AppCompat"
-            android:parentActivityName="View.PrincipalActivity"/>
-
-        <activity android:name="View.PrincipalActivity"
-            android:theme="@style/Theme.AppCompat"/>
-
+            android:parentActivityName="View.PrincipalActivity"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name="View.PrincipalActivity"
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name="View.CadastroActivity"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name="View.LoginActivity"
             android:screenOrientation="sensor"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name="View.BemVindoActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name="View.SplashActivity"
             android:screenOrientation="sensor"
