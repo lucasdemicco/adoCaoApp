@@ -1,5 +1,6 @@
 package View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,10 +13,25 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.lucas.adocaoapp.R;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.ByteArrayOutputStream;
+
+import Controller.Base64Custom;
+import Controller.ConfigurarFirebase;
 import Controller.Permissoes;
+import Model.User;
+import Model.UserFirebaseConfig;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ConfigsActivity extends AppCompatActivity {
@@ -30,16 +46,22 @@ public class ConfigsActivity extends AppCompatActivity {
     private static final int SELECAO_GALERIA = 200;
 
     private CircleImageView imagemPerfil;
+    private User user;
+    private StorageReference storageReference;
+    private String identificadorUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configs);
         getSupportActionBar().setTitle("Ajustes");
-
-        Permissoes.validarPermissoes(permissoes, this, 1);
         iniciarComponentes();
 
+        storageReference = ConfigurarFirebase.getReferenciaStorage();
+        identificadorUsuario = UserFirebaseConfig.getIdentificadorUsuario();
+
+
+        Permissoes.validarPermissoes(permissoes, this, 1);
         imgCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +80,7 @@ public class ConfigsActivity extends AppCompatActivity {
                 if(i.resolveActivity(getPackageManager()) != null){
                     startActivityForResult(i, SELECAO_GALERIA);
                 }
-                }
+            }
         });
     }
 
@@ -83,6 +105,34 @@ public class ConfigsActivity extends AppCompatActivity {
 
                 if(imagem != null){
                     imagemPerfil.setImageBitmap(imagem);
+
+                    //Recuperar dados
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos );
+                    byte[] dadosImagem = baos.toByteArray();
+
+                    //Salvar Firebase
+                     StorageReference imagemRef = storageReference.child("imagens")
+                             .child("perfil")
+                             .child(identificadorUsuario)
+                             .child("perfil.jpg");
+
+                    UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull @NotNull Exception e) {
+                            Toast.makeText(ConfigsActivity.this,
+                                    "Erro ao fazer upload da imagem",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(ConfigsActivity.this,
+                                    "Sucesso ao fazer upload da imagem",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
 
             }catch (Exception e){

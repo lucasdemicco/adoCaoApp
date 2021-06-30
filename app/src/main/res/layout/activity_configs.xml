@@ -14,8 +14,8 @@
         android:id="@+id/imagemPerfil"
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/fotopadrao"
         android:padding="16dp"
         app:civ_border_width="1dp" />
