@@ -21,6 +21,7 @@ import com.lucas.adocaoapp.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import Controller.Base64Custom;
 import Controller.ConfigurarFirebase;
 import Model.User;
 
@@ -81,6 +82,17 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
+                    try {
+
+                        String identificadorUsuario = Base64Custom.codificarBase64(user.getEmail());
+                        user.setIdUser(identificadorUsuario);
+                        user.salvarUsuarioChat();
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                     Toast.makeText(CadastroActivity.this,
                             "Cadastrado com sucesso!",
                             Toast.LENGTH_SHORT).show();

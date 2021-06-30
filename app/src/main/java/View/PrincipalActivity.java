@@ -316,6 +316,9 @@ public class PrincipalActivity extends AppCompatActivity {
             case R.id.meus_pets:
                 startActivity(new Intent(PrincipalActivity.this, MeusPetsActivity.class));
                 break;
+            case R.id.configs:
+                startActivity(new Intent(PrincipalActivity.this, ConfigsActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
