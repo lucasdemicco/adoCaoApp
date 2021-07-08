@@ -10,19 +10,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.lucas.adocaoapp.R;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import Controller.ConfigurarFirebase;
 import Model.Pets;
 import Model.User;
 
 public class DetalhesActivity extends AppCompatActivity {
 
-    private TextView txtNomeDetalhes, txtRacaDetalhes, txtEstadoDetalhes, txtDescicaoDetalhes;
+    private TextView txtNomeDetalhes, txtRacaDetalhes, txtEstadoDetalhes,
+            txtDescicaoDetalhes, txtPublicador, txtPublicadoPor;
     private CarouselView carouselView;
     private Pets petsSelecionado;
+    private FirebaseAuth usuario = ConfigurarFirebase.getReferenciaAutenticacao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class DetalhesActivity extends AppCompatActivity {
         petsSelecionado = (Pets) getIntent().getSerializableExtra("petsSelecionados");
 
         if(petsSelecionado != null){
+            txtPublicador.setText(usuario.getCurrentUser().getDisplayName());
             txtNomeDetalhes.setText(petsSelecionado.getNome());
             txtRacaDetalhes.setText(petsSelecionado.getRaca());
             txtEstadoDetalhes.setText(petsSelecionado.getEstado());
@@ -62,13 +67,15 @@ public class DetalhesActivity extends AppCompatActivity {
 
 
     public void chamarNoChat(View view) {
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=" + petsSelecionado.getTelefone()));
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=+55 " + petsSelecionado.getTelefone()));
         startActivity(i);
     }
 
 
     private void iniciarComponentes(){
 
+        txtPublicador = findViewById(R.id.txtPublicador);
+        txtPublicadoPor = findViewById(R.id.txtPublicadoPor);
         txtNomeDetalhes = findViewById(R.id.txtNomeDetalhes);
         txtRacaDetalhes = findViewById(R.id.txtRacaDetalhes);
         txtEstadoDetalhes = findViewById(R.id.txtEstadoDetalhes);
