@@ -112,7 +112,7 @@
         android:hint="@string/telefone"
         android:textColor="@color/black"
         android:inputType="number"
-        app:mask="(__) _____-____"
+        app:mask="(##) #####-####"
         app:maskCharacter="_"
         app:maskStyle="completable"
         android:textColorHint="@color/editBlack"
