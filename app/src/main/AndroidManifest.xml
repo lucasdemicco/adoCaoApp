@@ -8,8 +8,7 @@
     -->
     <uses-feature
         android:name="android.hardware.camera2"
-        android:required="true"
-        />
+        android:required="true" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,9 +25,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
 
-        <activity android:name="View.ConfigsActivity"
+        <activity
+            android:name="View.ChatConversaActivity"
+            android:label="@string/title_activity_chat_conversa"
             android:theme="@style/Theme.AppCompat"
-            android:parentActivityName="View.PrincipalActivity"/>
+            android:parentActivityName="View.ChatActivity"/>
+
+        <activity
+            android:name="View.ConfigsActivity"
+            android:parentActivityName="View.PrincipalActivity"
+            android:theme="@style/Theme.AppCompat" />
+
         <activity
             android:name="View.ChatActivity"
             android:parentActivityName="View.PrincipalActivity"

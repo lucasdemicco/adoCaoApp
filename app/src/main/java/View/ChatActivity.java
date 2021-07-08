@@ -11,7 +11,7 @@ import com.lucas.adocaoapp.R;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
-import Fragments.ContatosFragment;
+
 import Fragments.ConversasFragment;
 
 public class ChatActivity extends AppCompatActivity {
@@ -27,7 +27,6 @@ public class ChatActivity extends AppCompatActivity {
                 getSupportFragmentManager(),
                 FragmentPagerItems.with(this)
                 .add("Conversas", ConversasFragment.class)
-                .add("Contatos", ContatosFragment.class)
                 .create()
         );
 

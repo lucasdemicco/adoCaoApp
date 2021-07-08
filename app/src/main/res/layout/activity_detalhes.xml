@@ -11,7 +11,7 @@
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="330dp"
         app:fillColor="#FFFFFFFF"
         app:pageColor="#00000000"
         app:radius="6dp"
@@ -69,17 +69,16 @@
         android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:textSize="16sp"
         android:textColor="@color/editBlack"
-        android:layout_marginBottom="8dp"
         android:text="Descrição: " />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
 
@@ -91,7 +90,8 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:background="@color/editpink2"
+            android:backgroundTint="@color/editpink2"
+            android:background="@drawable/btncadastrar"
             android:drawableLeft="@drawable/ic_baseline_local_phone_24"
             android:onClick="visualizarTelefone"
             android:text="ver telefone"
@@ -104,10 +104,10 @@
             android:padding="16dp"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:background="@color/editBlack"
             android:drawableLeft="@drawable/ic_baseline_chat_bubble_24"
             android:onClick="chamarNoChat"
             android:text="Chat"
+            android:background="@drawable/btncadastrar"
             app:backgroundTint="@color/editBlack" />
     </LinearLayout>
 

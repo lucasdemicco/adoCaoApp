@@ -8,6 +8,9 @@
        <item android:id="@+id/configs"
            android:title="Configurações"/>
 
+       <item android:id="@+id/chat"
+           android:title="Chat"/>
+
        <item android:id="@+id/sair"
            android:title="Sair"/>
    </group>

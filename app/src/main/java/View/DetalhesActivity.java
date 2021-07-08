@@ -16,12 +16,14 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import Model.Pets;
+import Model.User;
 
 public class DetalhesActivity extends AppCompatActivity {
 
     private TextView txtNomeDetalhes, txtRacaDetalhes, txtEstadoDetalhes, txtDescicaoDetalhes;
     private CarouselView carouselView;
     private Pets petsSelecionado;
+    private User usuarioSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,9 @@ public class DetalhesActivity extends AppCompatActivity {
 
 
     public void chamarNoChat(View view) {
-        Intent i = new Intent (DetalhesActivity.this, ChatActivity.class );
+
+        Intent i = new Intent (DetalhesActivity.this, ChatConversaActivity.class );
+        i.putExtra("chatConversa", usuarioSelecionado);
         startActivity( i );
     }
 

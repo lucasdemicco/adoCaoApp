@@ -63,6 +63,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         iniciarComponentes();
 
+
         recyclerAnunciosPublicos.setLayoutManager(new LinearLayoutManager(this));
         recyclerAnunciosPublicos.setHasFixedSize(true);
         adapterPets = new AdapterPets(petsList, this);
@@ -97,7 +98,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     }
 
-    public void recuperarAnunciosPublicos(){
+   public void recuperarAnunciosPublicos(){
 
         dialog = new SpotsDialog.Builder()
                 .setContext( this )
@@ -123,7 +124,6 @@ public class PrincipalActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 }
-
             }
 
             @Override
@@ -318,6 +318,9 @@ public class PrincipalActivity extends AppCompatActivity {
                 break;
             case R.id.configs:
                 startActivity(new Intent(PrincipalActivity.this, ConfigsActivity.class));
+                break;
+            case R.id.chat:
+                startActivity(new Intent(PrincipalActivity.this, ChatActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
