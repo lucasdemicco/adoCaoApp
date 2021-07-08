@@ -319,9 +319,6 @@ public class PrincipalActivity extends AppCompatActivity {
             case R.id.configs:
                 startActivity(new Intent(PrincipalActivity.this, ConfigsActivity.class));
                 break;
-            case R.id.chat:
-                startActivity(new Intent(PrincipalActivity.this, ChatActivity.class));
-                break;
         }
         return super.onOptionsItemSelected(item);
     }

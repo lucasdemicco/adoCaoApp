@@ -26,18 +26,7 @@
         android:theme="@style/Theme.AppCompat">
 
         <activity
-            android:name="View.ChatConversaActivity"
-            android:label="@string/title_activity_chat_conversa"
-            android:theme="@style/Theme.AppCompat"
-            android:parentActivityName="View.ChatActivity"/>
-
-        <activity
             android:name="View.ConfigsActivity"
-            android:parentActivityName="View.PrincipalActivity"
-            android:theme="@style/Theme.AppCompat" />
-
-        <activity
-            android:name="View.ChatActivity"
             android:parentActivityName="View.PrincipalActivity"
             android:theme="@style/Theme.AppCompat" />
 

@@ -23,7 +23,6 @@ public class DetalhesActivity extends AppCompatActivity {
     private TextView txtNomeDetalhes, txtRacaDetalhes, txtEstadoDetalhes, txtDescicaoDetalhes;
     private CarouselView carouselView;
     private Pets petsSelecionado;
-    private User usuarioSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +62,8 @@ public class DetalhesActivity extends AppCompatActivity {
 
 
     public void chamarNoChat(View view) {
-
-        Intent i = new Intent (DetalhesActivity.this, ChatConversaActivity.class );
-        i.putExtra("chatConversa", usuarioSelecionado);
-        startActivity( i );
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=" + petsSelecionado.getTelefone()));
+        startActivity(i);
     }
 
 
